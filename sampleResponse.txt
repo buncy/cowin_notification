@@ -1,0 +1,35 @@
+ {
+     centers:[
+         (centerTypes.Center) {
+            Name: (string) (len=16) "Ruby Hall Clinic",
+            Address: (string) (len=63) "Rajeev Gandhi Infotech Park Phase I Plot No P-33 HinjawadiPune.",
+            Block_name: (string) (len=6) "Mulshi",
+            Pincode: (int) 411057,
+            Lat: (int) 0,
+            Long: (int) 0,
+            From: (string) (len=8) "10:00:00",
+            To: (string) (len=8) "13:00:00",
+            Fee_type: (string) (len=4) "Paid",
+            Sessions: ([]centerTypes.Session) (len=1 cap=4) {
+                (centerTypes.Session) {
+                Available_capacity: (int) 0,
+                Slots: ([]string) (len=2 cap=4) {
+                (string) (len=15) "10:00AM-12:00PM",
+                (string) (len=15) "12:00PM-01:00PM"
+                },
+                Min_age_limit: (int) 18,
+                Vaccine: (string) (len=10) "COVISHIELD",
+                Available_capacity_dose1: (int) 0,
+                Available_capacity_dose2: (int) 0
+                }
+            },
+            Vaccine_fees: ([]centerTypes.Vaccine_fee) (len=1 cap=4) {
+                (centerTypes.Vaccine_fee) {
+                Vaccine: (string) (len=10) "COVISHIELD",
+                Fee: (string) (len=3) "900"
+                }
+            }
+            },
+     ]
+ }
+ 
