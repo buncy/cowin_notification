@@ -7,7 +7,7 @@ import (
 )
 
 var (
-	filepath string
+	filePath string
 	notify   = false
 )
 
@@ -19,11 +19,26 @@ func SendNotification(centers centerTypes.CowinCenters) error {
 
 			if session.Available_capacity_dose1 > 0 && session.Min_age_limit == 18 && session.Vaccine == "COVAXIN" {
 
+				filePath = "./slots/COVAXIN.txt"
+
+				createOutput(filePath, center)
+
+				notify = true
 			}
 			if session.Available_capacity_dose1 > 0 && session.Min_age_limit == 18 && session.Vaccine == "COVISHIELD" {
 
+				filePath = "./slots/COVISHIELD.txt"
+
+				createOutput(filePath, center)
+
+				notify = true
 			} else if session.Available_capacity_dose1 > 0 && session.Min_age_limit == 18 {
 
+				filePath = "./slots/other.txt"
+
+				createOutput(filePath, center)
+
+				notify = true
 			}
 
 		}
@@ -36,8 +51,9 @@ func SendNotification(centers centerTypes.CowinCenters) error {
 		err := cmd.Run()
 
 		if err != nil {
-			log.Fatal(err)
+			log.Fatal("notify==>error : ", err)
 		}
+		WSLNnotify()
 	}
 
 	return nil

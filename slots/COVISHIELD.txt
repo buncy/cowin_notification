@@ -1,0 +1,113 @@
+//----------start center------------//
+{
+ "name": "Symbiosis University Hospital",
+ "address": "936 1 And 936 2 Gat Number AT POST LAVALESYMBIOSIS INTERNATIONAL UNIVERSITY (SIU ) CAMPUS 412115 936 1 And 936 2 Gat Number AT POST LAVALESYMBIOSIS INTERNATIONAL UNIVERSITY (SIU ) CAMPUS 412115",
+ "block_name": "Mulshi",
+ "pincode": 412115,
+ "lat": 18,
+ "long": 73,
+ "from": "09:00:00",
+ "to": "16:30:00",
+ "fee_type": "Paid",
+ "sessions": [
+  {
+   "available_capacity": 0,
+   "slots": [
+    "09:00AM-10:00AM",
+    "10:00AM-11:00AM",
+    "11:00AM-12:00PM",
+    "12:00PM-04:30PM"
+   ],
+   "min_age_limit": 18,
+   "vaccine": "COVISHIELD",
+   "available_capacity_dose1": 0,
+   "available_capacity_dose2": 0
+  },
+  {
+   "available_capacity": 0,
+   "slots": [
+    "09:00AM-11:00AM",
+    "11:00AM-01:00PM",
+    "01:00PM-03:00PM",
+    "03:00PM-06:00PM"
+   ],
+   "min_age_limit": 45,
+   "vaccine": "COVISHIELD",
+   "available_capacity_dose1": 0,
+   "available_capacity_dose2": 0
+  },
+  {
+   "available_capacity": 1,
+   "slots": [
+    "09:00AM-10:00AM",
+    "10:00AM-11:00AM",
+    "11:00AM-12:00PM",
+    "12:00PM-04:30PM"
+   ],
+   "min_age_limit": 18,
+   "vaccine": "COVISHIELD",
+   "available_capacity_dose1": 1,
+   "available_capacity_dose2": 0
+  },
+  {
+   "available_capacity": 0,
+   "slots": [
+    "09:00AM-10:00AM",
+    "10:00AM-11:00AM",
+    "11:00AM-12:00PM",
+    "12:00PM-04:30PM"
+   ],
+   "min_age_limit": 18,
+   "vaccine": "COVISHIELD",
+   "available_capacity_dose1": 0,
+   "available_capacity_dose2": 0
+  },
+  {
+   "available_capacity": 1,
+   "slots": [
+    "09:00AM-10:00AM",
+    "10:00AM-11:00AM",
+    "11:00AM-12:00PM",
+    "12:00PM-04:30PM"
+   ],
+   "min_age_limit": 18,
+   "vaccine": "COVISHIELD",
+   "available_capacity_dose1": 0,
+   "available_capacity_dose2": 0
+  },
+  {
+   "available_capacity": 0,
+   "slots": [
+    "09:00AM-11:00AM",
+    "11:00AM-01:00PM",
+    "01:00PM-03:00PM",
+    "03:00PM-06:00PM"
+   ],
+   "min_age_limit": 18,
+   "vaccine": "COVISHIELD",
+   "available_capacity_dose1": 0,
+   "available_capacity_dose2": 0
+  },
+  {
+   "available_capacity": 0,
+   "slots": [
+    "09:00AM-11:00AM",
+    "11:00AM-01:00PM",
+    "01:00PM-03:00PM",
+    "03:00PM-06:00PM"
+   ],
+   "min_age_limit": 18,
+   "vaccine": "COVISHIELD",
+   "available_capacity_dose1": 0,
+   "available_capacity_dose2": 0
+  }
+ ],
+ "vaccine_fees": [
+  {
+   "vaccine": "COVISHIELD",
+   "fee": "780"
+  }
+ ]
+}
+//----------End center---------//
+

@@ -2,66 +2,28 @@ package helpers
 
 import (
 	"fmt"
-	"log"
 	"os"
+	"path"
+	"path/filepath"
 )
 
-func CreateDir(dir string) error {
-	if _, err := os.Stat(dir); os.IsNotExist(err) {
-		err := os.MkdirAll(dir, os.ModePerm)
-		if err != nil {
-			log.Println(" -- error creating " + dir)
-			return err
-		}
-	}
-	return nil
-}
+func writeToFlie(filePath string, data string) error {
 
-func removeFile(filepath string) error {
-	// Removing file
-	// Using Remove() function
-
-	if fileExists(filepath) {
-		e := os.Remove(filepath)
-		if e != nil {
-			return e
-		}
-	}
-	return nil
-}
-
-// fileExists checks if a file exists and is not a directory before we
-// try using it to prevent further errors.
-func fileExists(filename string) bool {
-	info, err := os.Stat(filename)
-	if os.IsNotExist(err) {
-		return false
-	}
-	return !info.IsDir()
-}
-
-func writeToFlie(filepath string, data string) error {
-	// // check if file exists
-	// var _, statErr = os.Stat(filepath)
-
-	// // create file if not exists
-	// if os.IsNotExist(statErr) {
-	// 	CreateDir(filepath)
-	// }
-
-	// os.O_WRONLY tells the computer you are only going to writo to the file, not read
-	// os.O_CREATE tells the computer to create the file if it doesn't exist
-	// os.O_APPEND tells the computer to append to the end of the file instead of overwritting or truncating it
-	out, err := os.OpenFile(filepath, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0644)
-
+	absPath, err := filepath.Abs(filePath)
+	fmt.Println(absPath)
 	if err != nil {
-		fmt.Println("this is the error for openfile :", err.Error())
+		fmt.Println("error while absPath", err.Error())
 	}
-	// Create the file
-	// out, err := os.Create(filepath)
-	// if err != nil {
-	// 	return err
-	// }
+	DirErr := EnsureBaseDir(absPath)
+	if err != nil {
+		fmt.Println("dir error", DirErr.Error())
+	}
+
+	out, err := os.OpenFile(absPath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		fmt.Println("err creating file", err.Error())
+	}
+
 	defer out.Close()
 
 	// Write the body to file
@@ -72,4 +34,12 @@ func writeToFlie(filepath string, data string) error {
 
 	out.Sync()
 	return err
+}
+func EnsureBaseDir(fpath string) error {
+	baseDir := path.Dir(fpath)
+	info, err := os.Stat(baseDir)
+	if err == nil && info.IsDir() {
+		return nil
+	}
+	return os.MkdirAll(baseDir, 0755)
 }

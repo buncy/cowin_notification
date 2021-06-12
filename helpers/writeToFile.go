@@ -1,24 +1,16 @@
 package helpers
 
 import (
+	"cowin/centerTypes"
 	"encoding/json"
 	"fmt"
 )
 
-var (
-	session string
-)
+func createOutput(filePath string, center centerTypes.Center) {
 
-func WriteToFlie() {
-	notify = true
-	filepath = "./slots/COVAXIN.txt"
-	removeError := removeFile(filepath)
-	if removeError != nil {
-		fmt.Println("this is the error for removeError :", removeError.Error())
-	}
-	jsonData, _ := json.MarshalIndent(session, "", " ")
+	jsonData, _ := json.MarshalIndent(center, "", " ")
 	data := "//----------start center------------//\n" + string(jsonData) + "\n//----------End center---------//\n\n"
-	err := writeToFlie(filepath, data)
+	err := writeToFlie(filePath, data)
 	if err != nil {
 		fmt.Println("this is the error for err :", err.Error())
 	}

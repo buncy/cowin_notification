@@ -3,16 +3,20 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"os"
+
+	//"path/filepath"
+
 	"net/http"
 	"time"
 
 	ctype "cowin/centerTypes"
 
-	"github.com/davecgh/go-spew/spew"
+	helpers "cowin/helpers"
 )
 
-func cowin(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello cowin! %s", time.Now())
+func cowin() {
+	fmt.Println("cowin started")
 	date := time.Now().Format("02-01-2006")
 	url := "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=363&date=" + date
 	req, err := http.NewRequest("GET", url, nil)
@@ -33,19 +37,30 @@ func cowin(w http.ResponseWriter, r *http.Request) {
 	if jsonErr != nil {
 		fmt.Println("this is the error for jsonErr :", jsonErr.Error())
 	}
+	//remove file if already present
+	removeError := os.RemoveAll("slots")
+	if removeError != nil {
+		fmt.Println("this is the error for removeError :", removeError.Error())
+	} else if removeError == nil {
+		fmt.Println("folder removed==========================================>")
+	}
+	notificationErr := helpers.SendNotification(curentDaySessions)
 
-	//notificationErr := helpers.SendNotification(curentDaySessions)
+	if notificationErr != nil {
+		fmt.Println("this is the error for notificationErr :", notificationErr.Error())
+	}
+	// fmt.Println("this is the data: ", curentDaySessions.Centers[0])
 
-	// if notificationErr != nil {
-	// 	fmt.Println("this is the error for notificationErr :", notificationErr.Error())
-	// }
-	//fmt.Println("this is the data: ", curentDaySessions.Centers[0])
+	//spew.Dump("this is the data: ", curentDaySessions)
 
-	spew.Dump("this is the data: ", curentDaySessions)
-
+	defer fmt.Println("cowin exited ")
 }
 
 func main() {
-	http.HandleFunc("/", cowin)
-	http.ListenAndServe(":8080", nil)
+	ticker := time.NewTicker(4 * time.Second)
+	now := time.Now()
+	for ; true; <-ticker.C {
+		cowin()
+		fmt.Println("time is =========================================>", time.Since(now))
+	}
 }
